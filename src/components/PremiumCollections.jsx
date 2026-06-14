@@ -3,42 +3,71 @@ import React from 'react';
 import { Download, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const PremiumCollections = () => {
-  const collections = [
-    {
-      id: 1,
-      brand: "SR ENTERPRISES",
-      title: "Book of colours",
-      subtitle: "Ultimate shade guide for interior spaces",
-      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop",
-      pdfUrl: "#",
-      theme: "bg-[#282A52]" 
-    },
-    {
-      id: 2,
-      brand: "SR ENTERPRISES",
-      title: "Earth & Stone",
-      subtitle: "Tactile textures for modern facades",
-      image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1000&auto=format&fit=crop",
-      pdfUrl: "#",
-      theme: "bg-[#3A332C]" 
-    },
-    {
-      id: 3,
-      brand: "SR ENTERPRISES",
-      title: "Urban Glass",
-      subtitle: "High-gloss finishes for contemporary living",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
-      pdfUrl: "#",
-      theme: "bg-[#1C2321]" 
-    }
-  ];
+const collections = [
+  {
+    id: 1,
+    brand: "SR ENTERPRISES",
+    title: "Lux Indica",
+    subtitle: "Heritage & Earth",
+    image: "/images/luxindica.png",
+    pdfUrl: "/pdfs/luxindica-shade-booklet.pdf",
+    theme: "bg-[#4A2C2A]" 
+  },
+  {
+    id: 2,
+    brand: "SR ENTERPRISES",
+    title: "Insignia",
+    subtitle: "The Signature Series",
+    image: "/images/insignia.png",
+    pdfUrl: "/pdfs/Insignia-Booklet_30.10.pdf",
+    theme: "bg-[#1A1A1A]" 
+  },
+  {
+    id: 3,
+    brand: "SR ENTERPRISES",
+    title: "Shvet",
+    subtitle: "Decoding the Whites",
+    image: "/images/shvet.png",
+    pdfUrl: "/pdfs/Shvet-Brochure.pdf",
+    theme: "bg-[#EAE8E3]",
+    textColor: "text-zinc-900"
+  },
+  {
+    id: 4,
+    brand: "SR ENTERPRISES",
+    title: "Royale",
+    subtitle: "The Designer's Edit",
+    // Represents vintage, aristocratic opulence and deep, moody jewel tones
+    image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=1000&auto=format&fit=crop",
+    pdfUrl: "/pdfs/Royale-Designer-Palette.pdf",
+    theme: "bg-[#2B3A42]"
+  },
+  {
+    id: 5,
+    brand: "SR ENTERPRISES",
+    title: "Royale Archives",
+    subtitle: "Interior Atmospheres",
+    image: "/images/royalbookofcolors.png",
+    pdfUrl: "/pdfs/Royale-Book-of-colours-2024.pdf",
+    theme: "bg-[#1F242A]" 
+  },
+  {
+    id: 6,
+    brand: "SR ENTERPRISES",
+    title: "Ultima",
+    subtitle: "Exterior Facades",
+    image: "/images/ultima.png",
+    pdfUrl: "/pdfs/Ultima-book-of-colours-2024.pdf",
+    theme: "bg-[#4A4A4A]" 
+  }
+];
 
+const PremiumCollections = () => {
   return (
     <section className="bg-zinc-950 py-24 px-6 border-t border-zinc-900">
       <div className="max-w-7xl mx-auto">
         
-        {/* Updated Section Header */}
+        {/* Section Header */}
         <div className="mb-16 text-center md:text-left flex flex-col items-center md:items-start">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
             Premium Collections
@@ -56,7 +85,7 @@ const PremiumCollections = () => {
               className="flex flex-col rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2 group border border-zinc-800/50"
             >
               {/* Top Banner */}
-              <div className={`${item.theme} text-white px-8 pt-8 pb-6 flex flex-col justify-center`}>
+              <div className={`${item.theme} ${item.textColor || 'text-white'} px-8 pt-8 pb-6 flex flex-col justify-center`}>
                 <span className="text-[11px] md:text-xs font-bold tracking-[0.15em] mb-2 uppercase opacity-90">
                   {item.brand}
                 </span>
@@ -69,9 +98,9 @@ const PremiumCollections = () => {
               </div>
 
               {/* Middle Image */}
-              <div className="h-56 w-full relative overflow-hidden">
+              <div className="h-64 w-full relative overflow-hidden bg-zinc-900 border-y border-black/20">
                 <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 bg-cover bg-top bg-no-repeat transition-transform duration-700 group-hover:scale-105"
                   style={{ backgroundImage: `url(${item.image})` }}
                 />
               </div>

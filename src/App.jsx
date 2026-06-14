@@ -12,7 +12,7 @@ import Collections from './pages/Collections';
 import Colors from './pages/Colors';
 import Tools from './pages/Tools';
 import About from './pages/About';
-
+import Contact from './pages/Contact';
 export default function App() {
   return (
     <Router>
@@ -28,6 +28,7 @@ export default function App() {
             <Route path="/colors" element={<Colors />} /> 
             <Route path="/tools" element={<Tools />} /> 
             <Route path="/about" element={<About />} /> 
+            <Route path="/contact" element={<Contact />} /> 
 
           </Routes>
         </main>

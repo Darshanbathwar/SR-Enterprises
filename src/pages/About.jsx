@@ -91,7 +91,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* 4. Visit Our Studio (Light Theme) */}
+      {/* 4. Visit Our Store (Light Theme) */}
       <section className="w-full bg-white text-zinc-950 py-24 px-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
           {/* Image */}
@@ -99,7 +99,7 @@ const About = () => {
             <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl relative">
               <div 
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url(aboutbg)" }}
+                style={{ backgroundImage: "url(/images/storeimg.png)" }}
               />
             </div>
           </div>
@@ -107,17 +107,17 @@ const About = () => {
           {/* Text Content */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center">
             <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-8">
-              Visit Our Studio.<br />Experience the spectrum in person.
+              Visit Our Store.<br />Experience the spectrum in person.
             </h2>
             <p className="text-zinc-600 text-lg leading-relaxed mb-12 max-w-lg">
-              Located in the heart of the architectural district, our studio is a laboratory of light. We invite architects, designers, and homeowners to test finishes on a scale that reveals their true character.
+              Located in the heart of the architectural district, our store is a laboratory of light. We invite architects, designers, and homeowners to test finishes on a scale that reveals their true character.
             </p>
-
+    
             <div className="flex flex-col gap-6">
               <div className="flex gap-4 items-start">
                 <MapPin className="text-zinc-400 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h4 className="font-bold text-zinc-900 mb-1">Studio Location</h4>
+                  <h4 className="font-bold text-zinc-900 mb-1">Store Location</h4>
                   <p className="text-zinc-500 text-sm">S R Enterprises<br />Mumbai, Maharashtra, India</p>
                 </div>
               </div>

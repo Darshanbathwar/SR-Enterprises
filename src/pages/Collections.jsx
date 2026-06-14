@@ -1,73 +1,27 @@
 // src/pages/Collections.jsx
-import React from 'react';
-import { Download } from 'lucide-react';
+import React, { useState } from 'react';
+import { Download, Search } from 'lucide-react';
+import { allCollections } from '../data/allcollections';
 
 const Collections = () => {
-  // Expanded data for the dedicated page
-  const allCollections = [
-    {
-      id: 1,
-      brand: "SR ENTERPRISES",
-      title: "Book of colours",
-      subtitle: "Ultimate shade guide for interior spaces",
-      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop",
-      pdfUrl: "#",
-      theme: "bg-[#282A52]" 
-    },
-    {
-      id: 2,
-      brand: "SR ENTERPRISES",
-      title: "Earth & Stone",
-      subtitle: "Tactile textures for modern facades",
-      image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1000&auto=format&fit=crop",
-      pdfUrl: "#",
-      theme: "bg-[#3A332C]" 
-    },
-    {
-      id: 3,
-      brand: "SR ENTERPRISES",
-      title: "Urban Glass",
-      subtitle: "High-gloss finishes for contemporary living",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
-      pdfUrl: "#",
-      theme: "bg-[#1C2321]" 
-    },
-    {
-      id: 4,
-      brand: "SR ENTERPRISES",
-      title: "Industrial Metals",
-      subtitle: "Oxidized and brushed metallic coatings",
-      image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=1000&auto=format&fit=crop",
-      pdfUrl: "#",
-      theme: "bg-[#4A4A4A]" 
-    },
-    {
-      id: 5,
-      brand: "SR ENTERPRISES",
-      title: "Botanical Pigments",
-      subtitle: "Organic, eco-conscious raw materials",
-      image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1000&auto=format&fit=crop",
-      pdfUrl: "#",
-      theme: "bg-[#2B3A2F]" 
-    },
-    {
-      id: 6,
-      brand: "SR ENTERPRISES",
-      title: "The Whites",
-      subtitle: "Decoding temperature in minimalist design",
-      image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1000&auto=format&fit=crop",
-      pdfUrl: "#",
-      theme: "bg-[#D1D1C7]",
-      textColor: "text-zinc-900" // Special case for a light card
-    }
-  ];
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filter logic for the search bar
+  const filteredCollections = allCollections.filter(item => {
+    const query = searchQuery.toLowerCase();
+    return (
+      item.title.toLowerCase().includes(query) ||
+      item.subtitle.toLowerCase().includes(query) ||
+      item.brand.toLowerCase().includes(query)
+    );
+  });
 
   return (
-    <div className="min-h-screen bg-zinc-950 pt-32 pb-24 px-6">
+    <div className="min-h-screen bg-zinc-950 pt-32 pb-24 px-6 relative">
       <div className="max-w-7xl mx-auto">
         
         {/* Page Header */}
-        <div className="mb-20 max-w-3xl">
+        <div className="mb-12 max-w-3xl">
           <span className="text-sm font-bold tracking-[0.2em] text-zinc-500 uppercase mb-4 block">
             The Digital Archives
           </span>
@@ -79,9 +33,39 @@ const Collections = () => {
           </p>
         </div>
 
+        {/* Search Control */}
+        <div className="flex flex-col md:flex-row gap-6 mb-12 border-b border-zinc-900 pb-8 items-start md:items-center justify-end">
+          {/* Search Bar */}
+          <div className="relative w-full md:w-96 flex-shrink-0">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Search size={18} className="text-zinc-500" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search collections, titles, or keywords..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-zinc-900/40 border border-zinc-800 text-white rounded-full py-3 pl-11 pr-4 focus:outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition-all placeholder-zinc-600 text-sm"
+            />
+          </div>
+        </div>
+
+        {/* Empty State Fallback */}
+        {filteredCollections.length === 0 && (
+          <div className="text-center py-20">
+            <p className="text-zinc-500 text-lg">No collections match your search criteria.</p>
+            <button 
+              onClick={() => setSearchQuery('')}
+              className="mt-4 text-white underline hover:text-zinc-300 transition-colors"
+            >
+              Clear search
+            </button>
+          </div>
+        )}
+
         {/* Full Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allCollections.map((item) => (
+          {filteredCollections.map((item) => (
             <div 
               key={item.id} 
               className="flex flex-col rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2 group border border-zinc-800/50"
@@ -100,9 +84,9 @@ const Collections = () => {
               </div>
 
               {/* Middle Image */}
-              <div className="h-64 w-full relative overflow-hidden bg-zinc-900">
+              <div className="h-64 w-full relative overflow-hidden bg-zinc-900 border-y border-black/20">
                 <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 bg-cover bg-top bg-no-repeat transition-transform duration-700 group-hover:scale-105"
                   style={{ backgroundImage: `url(${item.image})` }}
                 />
               </div>
